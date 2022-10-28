@@ -1,0 +1,26 @@
+body, html{
+    height: 100%;
+}
+.contenedor-omc{
+    border: 6px solid black;
+    width: 30%;
+    padding: 15px;
+}
+.contenedor{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.centrar-img{
+    text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .contenedor-omc{
+        width: 95%;
+        height: 95%;
+    }
+}

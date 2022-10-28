@@ -1,0 +1,102 @@
+body, html{
+    height: 100%;
+}
+.banner{
+    /* height: 100%; */
+    background:url('/static/img/banner.png')
+    no-repeat;
+    background-size: contain;
+    height: 30%;
+    margin: 3px;
+    margin-bottom:3%;
+}
+.grupos, .octavos, .cuartos, .semis, .tercer, .final, .campeon{
+    background:url('/static/img/cancha.png');
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#grupo_a, #grupo_b, #grupo_c, #grupo_d, #grupo_e, #grupo_f, #grupo_g, #grupo_h{
+    list-style: none;
+}
+.a1, .a2, .a3, .a4, .b1, .b2, .b3, .b4, .c1, .c2, .c3, .c4, .d1, .d2, .d3, .d4{
+    margin: 1px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    border: none;
+    width: 90%;
+    height: 35px;
+}
+
+.e1, .e2, .e3, .e4, .f1, .f2, .f3, .f4, .g1, .g2, .g3, .g4, .hh1, .hh2, .hh3, .hh4{
+    margin: 1px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    border: none;
+    width: 90%;
+    height: 35px;
+}
+.grupos_arriba, .grupos_abajo{
+    margin-top: 60px;
+}
+.gp-centrar{
+    text-align: center;
+}
+.octavos-final, .cuartos-final, .semifinales, .tercer-puesto, .partido-final{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 0 auto;
+}
+.tu_campeon{
+    margin: 0 auto;
+    width: 30%;
+    text-align: center;
+    border: solid 3px black;
+    box-shadow: 6px 6px 6px black;
+}
+.titulos{
+    text-align: center;
+}
+.numero1{
+    border: solid;
+    border-color: #198754;
+    box-shadow: 6px 6px 6px;
+}
+.numero2{
+    border: solid;
+    border-color: brown;
+}
+.boton-enviar{
+    display: flex;
+    justify-content: center;
+}
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-3 menu"] {
+    width: 90%;
+    }
+    .octavos-final, .cuartos-final, .semifinales, .tercer-puesto, .partido-final{
+        width: 90%;
+    }
+
+}
+.btn-reiniciar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.instrucciones-fg{
+    text-align: center;
+    width: 75%;
+}
+.centrar-instrucciones{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+.reglas-oct{
+    text-align: center;
+}

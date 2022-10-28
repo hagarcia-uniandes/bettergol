@@ -1,0 +1,15 @@
+.boton{
+    display: flex;
+    justify-content: center;
+}
+
+.title{
+    font-family: 'Russo One', sans-serif;
+}
+.verificar{
+    color: red;
+}
+
+.invisible{
+    display: none;
+}

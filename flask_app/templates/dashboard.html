@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="/static/img/logo.png">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/nav.css') }}">
+    <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <title>Dashboard principal</title>
+    <style>
+        /* For desktop: */
+        .col-1 {width: 8.33%;}
+        .col-2 {width: 16.66%;}
+        .col-3 {width: 25%;}
+        .col-4 {width: 33.33%;}
+        .col-5 {width: 41.66%;}
+        .col-6 {width: 50%;}
+        .col-7 {width: 58.33%;}
+        .col-8 {width: 66.66%;}
+        .col-9 {width: 75%;}
+        .col-10 {width: 83.33%;}
+        .col-11 {width: 91.66%;}
+        .col-12 {width: 100%;}
+        
+        @media only screen and (max-width: 768px) {
+          /* For mobile phones: */
+        [class*="col-"] {
+            width: 100%;
+        }
+        }
+        </style>
+
+    <script src="https://pay.payphonetodoesposible.com/api/button/js?appId=ACATUIDDEAPLICACION"></script>
+    
+    <!--! Script forma 1 payphone -->
+    <script>
+        window.onload = function() {
+        payphone.Button({
+        
+        //token obtenido desde la consola de developer
+        token: "kssiQ-XUd4LaIWLqCq77fRYVhYCCenxyzP_7fUD8D9RprdHtMrn8k69909pJ6uRR1aktr929sPVC7ddzuImoL1__CrYAYs-vahipTiwl498KXWvqZiGa6BMhUz4Atd-PD_HV8WdOhGlu53ILrGNPeW2vDV9fBMoTrqvX9r3xzR2JMx_i2ivAWpJEX9oZ6lfFaweHRCIDDq8a5lAC5dKP_1YugwLEeU9vVT1-FNN8Tf3qoH9cUKMY94KUB78ZREawsSYWecWvC0qEk37Xhx7C2yERwp_s-Bj_Vn8uR3XEvxPEO90qyd7Q1YxUEHVKjB4F_SnuDQ",
+        
+        //PARÁMETROS DE CONFIGURACIÓN
+        btnHorizontal: true,
+        btnCard: true,
+        
+        createOrder: function(actions){
+        
+        //Se ingresan los datos de la transaccion ej. monto, impuestos, etc
+        return actions.prepare({
+        
+        amount: 1000,
+        amountWithoutTax: 1000,
+        currency: "USD",
+        clientTransactionId: "identificador-único"
+        });
+        
+        },
+        onComplete: function(model, actions){
+        
+        //Se confirma el pago realizado
+        actions.confirm({
+        id: model.id,
+        clientTxId: model.clientTxId
+        }).then(function(value){
+        
+        //EN ESTA SECCIÓN SE RECIBE LA RESPUESTA Y SE MUESTRA AL USUARIO
+        
+        if (value.transactionStatus == "Approved"){
+        alert("Pago " + value.transactionId + " recibido, estado " + value.transactionStatus );
+        }
+        }).catch(function(err){
+        console.log(err);
+        });
+        
+        }
+        }).render("#pp-button");
+        
+        }
+        </script>
+
+        <!--! Script forma 2 payphone -->
+        <script>
+            function pagarpronostico(){
+                var parametros ={
+                    amount: "1000",
+                    amountWithoutTax: "1000",
+                    clientTransactionId: "Prueba001",
+                    responseUrl: "http://localhost:5000/aprobado.html",
+                    cancellationUrl: "http://localhost:5000/aprobado.html"
+                };
+                $.ajax({
+                    data: parametros,
+                    url: 'https://pay.payphonetodoesposible.com/api/button/Prepare',
+                    type: 'POST',
+                    beforeSend: function(xhr){
+                        xhr.setRequestHeader ('Authorization', "Bearer kssiQ-XUd4LaIWLqCq77fRYVhYCCenxyzP_7fUD8D9RprdHtMrn8k69909pJ6uRR1aktr929sPVC7ddzuImoL1__CrYAYs-vahipTiwl498KXWvqZiGa6BMhUz4Atd-PD_HV8WdOhGlu53ILrGNPeW2vDV9fBMoTrqvX9r3xzR2JMx_i2ivAWpJEX9oZ6lfFaweHRCIDDq8a5lAC5dKP_1YugwLEeU9vVT1-FNN8Tf3qoH9cUKMY94KUB78ZREawsSYWecWvC0qEk37Xhx7C2yERwp_s-Bj_Vn8uR3XEvxPEO90qyd7Q1YxUEHVKjB4F_SnuDQ")
+                    },
+                    success: function SolicitarPago(respuesta){
+                        lacation.href = respuesta.payWhithCard;
+                    },
+                    error: function(respuesta){
+                        alert("Error en la llamdada" + respuesta);
+                    }
+                });  
+            }
+        </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <div class="grupos">
+        <img src="../static/img/banner.png" width="100%">
+    </div>
+
+    <nav class="cajaNav">
+        <div class="titNav">
+        <div class="logo h3" ><b>{{usuario_ingreso.nombre}}</b></div>
+        <div class="toggle fa fa-bars" onclick="alternar('menu')"></div>
+        </div>
+        <ul class="barNav cerrado" id="menu">
+            <a class="nav-link" href="/dashboard" style="margin: 10px;">Inicio</a>
+            <a class="nav-link"  href="/predicciones" style="margin: 10px;">Predicciones</a>
+            <a class="nav-link" href="/calendario" style="margin: 10px;">Historias</a>
+            <a class="nav-link" href="/reglamento" style="margin: 10px;">Reglamento</a>
+            <a href="/logout" class="dropdown-item" style="margin: 10px;"><i class="fa fa-power-off"></i> Cerrar Sesión</a>
+        </ul>
+    </nav>
+
+    <div class="grupos">
+        <h2 class="titulos">Fase de grupos</h2>
+    </div>
+    <div class="centrar-instrucciones">
+        <h5 class="instrucciones-fg mb-4 mt-3">Elige a los dos paises que crees que clasificarán de cada grupo. En orden, haz click en el que piensas que clasificará primero y continúa con el que crees será el segundo.
+            El primero se pintará de verde y el segundo de rojo.
+            Si cambias de decisión, haz click en el boton "limpiar" y vuelve a elegir.
+        </h5>
+    </div>
+    <div class="fase-grupos">
+        <div class="row grupos_arriba">
+            <div class="col-3 menu">
+                <h3 class="gp-centrar">GRUPO A</h3>
+                <ul id="grupo_a">
+                        <li><button onclick="grupoa(this)" class="a1" name="a" value="QAT">Qatar<img class="float-end" src="{{ url_for('static', filename='img/QAT.svg') }}" width="25"></button></li>
+                        <li><button onclick="grupoa(this)" class="a2" name="a" value="ECU">Ecuador<img class="float-end" src="{{ url_for('static', filename='img/ECU.svg') }}" width="25"></button></li>
+                        <li><button onclick="grupoa(this)" class="a3" name="a" value="SEN">Senegal<img class="float-end" src="{{ url_for('static', filename='img/SEN.svg') }}"width="25"></button></li>
+                        <li><button onclick="grupoa(this)" class="a4" name="a" value="HOL">Holanda<img class="float-end" src="{{ url_for('static', filename='img/HOL.svg') }}" width="25"></button></li>
+                </ul>
+                <div class="btn-reiniciar">
+                    <button class="btn btn-secondary" onclick="reiniciara(this)" class="reiniciar">Limpiar</button>
+                </div><br>
+                
+            </div>
+            
+            <div class="col-3 menu">
+                <h3 class="gp-centrar">GRUPO B</h3>
+                <ul id="grupo_b">
+                    <li><button onclick="grupob(this)" class="b1" name="b" value="ING">Inglaterra<img class="float-end" src="{{ url_for('static', filename='img/ING.svg') }}" width="25"></button></li>
+                    <li><button onclick="grupob(this)" class="b2" name="b" value="IRA">Irán<img class="float-end" src="{{ url_for('static', filename='img/IRA.svg') }}" width="25"></button></li>
+                    <li><button onclick="grupob(this)" class="b3" name="b" value="USA">Estados Unidos<img class="float-end" src="{{ url_for('static', filename='img/USA.svg') }}" width="25"></button></li>
+                    <li><button onclick="grupob(this)" class="b4" name="b" value="GAL">Gales<img class="float-end" src="{{ url_for('static', filename='img/GAL.svg') }}" width="25"></button></li>
+                </ul>
+                <div class="btn-reiniciar">
+                    <button class="btn btn-secondary" onclick="reiniciarb(this)" class="reiniciar">Limpiar</button>
+                </div><br>
+            </div>
+
+            <div class="col-3 menu">
+                <h3 class="gp-centrar">GRUPO C</h3>
+                <ul id="grupo_c">
+                    <li><button onclick="grupoc(this)" class="c1" name="c" value="ARG">Argentina<img class="float-end" src="{{ url_for('static', filename='img/ARG.svg') }}" width="25"></button></li>
+                    <li><button onclick="grupoc(this)" class="c2" name="c" value="ARA">Arabia Saudita<img class="float-end" src="{{ url_for('static', filename='img/ARA.svg') }}" width="25"></button></li>
+                    <li><button onclick="grupoc(this)" class="c3" name="c" value="MEX">México<img class="float-end" src="{{ url_for('static', filename='img/MEX.svg') }}" width="25"></button></li>
+                    <li><button onclick="grupoc(this)" class="c4" name="c" value="POL">Polonia<img class="float-end" src="{{ url_for('static', filename='img/POL.svg') }}" width="25"></button></li>
+                </ul>
+                <div class="btn-reiniciar">
+                    <button class="btn btn-secondary" onclick="reiniciarc(this)" class="reiniciar">Limpiar</button>
+                </div><br>
+            </div>
+            
+            <div class="col-3 menu">
+                <h3 class="gp-centrar">GRUPO D</h3>
+                <ul id="grupo_d">
+                    <li><button onclick="grupod(this)" class="d1" name="d" value="FRA">Francia<img class="float-end" src="{{ url_for('static', filename='img/FRA.svg') }}" width="25"></button></li>
+                    <li><button onclick="grupod(this)" class="d2" name="d" value="AUS">Australia<img class="float-end" src="{{ url_for('static', filename='img/AUS.svg') }}" width="25"></button></li>
+                    <li><button onclick="grupod(this)" class="d3" name="d" value="DIN">Dinamarca<img class="float-end" src="{{ url_for('static', filename='img/DIN.svg') }}" width="25"></button></li>
+                    <li><button onclick="grupod(this)" class="d4" name="d" value="TUN">Túnez<img class="float-end" src="{{ url_for('static', filename='img/TUN.svg') }}" width="25"></button></li>
+                </ul>
+                <div class="btn-reiniciar">
+                    <button class="btn btn-secondary" onclick="reiniciard(this)" class="reiniciar">Limpiar</button>
+                </div><br>
+            </div>
+        </div>
+
+        <!-- Division por filas de los grupos-->
+        <div class="row grupos_abajo">
+            <div class="col-3 menu">
+                <h3 class="gp-centrar">GRUPO E</h3>
+                <ul id="grupo_e">
+                    <li><button onclick="grupoe(this)" class="e1" name="e" value="ESP">España<img class="float-end" src="{{ url_for('static', filename='img/ESP.svg') }}" width="25"></button></li>
+                    <li><button onclick="grupoe(this)" class="e2" name="e" value="CRI">Costa Rica<img class="float-end" src="{{ url_for('static', filename='img/CRI.svg') }}" width="25"></button></li>
+                    <li><button onclick="grupoe(this)" class="e3" name="e" value="ALE">Alemania<img class="float-end" src="{{ url_for('static', filename='img/ALE.svg') }}" width="25"></button></li>
+                    <li><button onclick="grupoe(this)" class="e4" name="e" value="JAP">Japón<img class="float-end" src="{{ url_for('static', filename='img/JAP.svg') }}" width="25"></button></li>
+                </ul>
+                <div class="btn-reiniciar">
+                    <button class="btn btn-secondary" onclick="reiniciare(this)" class="reiniciar">Limpiar</button>
+                </div><br>
+            </div>
+            
+            <div class="col-3 menu">
+                <h3 class="gp-centrar">GRUPO F</h3>
+                <ul id="grupo_f">
+                    <li><button onclick="grupof(this)" class="f1" name="f" value="BEL">Bélgica<img class="float-end" src="{{ url_for('static', filename='img/BEL.svg') }}" width="25"></button></li>
+                    <li><button onclick="grupof(this)" class="f2" name="f" value="CAN">Canadá<img class="float-end" src="{{ url_for('static', filename='img/CAN.svg') }}" width="25"></button></li>
+                    <li><button onclick="grupof(this)" class="f3" name="f" value="MAR">Marruecos<img class="float-end" src="{{ url_for('static', filename='img/MAR.svg') }}" width="25"></button></li>
+                    <li><button onclick="grupof(this)" class="f4" name="f" value="CRO">Croacia<img class="float-end" src="{{ url_for('static', filename='img/CRO.svg') }}" width="25"></button></li>
+                </ul>
+                <div class="btn-reiniciar">
+                    <button class="btn btn-secondary" onclick="reiniciarf(this)" class="reiniciar">Limpiar</button>
+                </div><br>
+            </div>
+
+            <div class="col-3 menu">
+                <h3 class="gp-centrar">GRUPO G</h3>
+                <ul id="grupo_g">
+                    <li><button onclick="grupog(this)" class="g1" name="g" value="BRA">Brasil<img class="float-end" src="{{ url_for('static', filename='img/BRA.svg') }}" width="25"></button></li>
+                    <li><button onclick="grupog(this)" class="g2" name="g" value="SER">Serbia<img class="float-end" src="{{ url_for('static', filename='img/SER.svg') }}" width="25"></button></li>
+                    <li><button onclick="grupog(this)" class="g3" name="g" value="SUI">Suiza<img class="float-end" src="{{ url_for('static', filename='img/SUI.svg') }}" width="25"></button></li>
+                    <li><button onclick="grupog(this)" class="g4" name="g" value="CAM">Camerún<img class="float-end" src="{{ url_for('static', filename='img/CAM.svg') }}" width="25"></button></li>
+                </ul>
+                <div class="btn-reiniciar">
+                    <button class="btn btn-secondary" onclick="reiniciarg(this)" class="reiniciar">Limpiar</button>
+                </div><br>
+            </div>
+            
+            <div class="col-3 menu">
+                <h3 class="gp-centrar">GRUPO H</h3>
+                <ul id="grupo_h">
+                    <li><button onclick="grupoh(this)" class="hh1" name="h" value="POR">Portugal<img class="float-end" src="{{ url_for('static', filename='img/POR.svg') }}" width="25"></button></li>
+                    <li><button onclick="grupoh(this)" class="hh2" name="h" value="GHA">Ghana<img class="float-end" src="{{ url_for('static', filename='img/GHA.svg') }}" width="25"></button></li>
+                    <li><button onclick="grupoh(this)" class="hh3" name="h" value="URU">Uruguay<img class="float-end" src="{{ url_for('static', filename='img/URU.svg') }}" width="25"></button></li>
+                    <li><button onclick="grupoh(this)" class="hh4" name="h" value="CSR">Corea del Sur<img class="float-end" src="{{ url_for('static', filename='img/CSR.svg') }}" width="25"></button></li>
+                </ul>
+                <div class="btn-reiniciar">
+                    <button class="btn btn-secondary" onclick="reiniciarh(this)" class="reiniciar">Limpiar</button>
+                </div><br>
+            </div>
+        </div>
+    </div>
+
+    <form action="/crear_pronostico" method="post">
+        <div class="octavos">
+            <h2 class="titulos">Octavos de final</h2>
+        </div>
+        <h5 class="reglas-oct">A partir de aquí selecciona el ganador de cada partido</h5>
+        <div class="octavos-final">
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="A1B2" id="A1" autocomplete="off" required disabled>
+                <label id="CA1" class="btn btn-outline-success" for="A1" onclick="octavos('#A1')">A1</label>
+                <input type="hidden" name="A1" id="ha1">
+
+            
+                <input type="radio" class="btn-check" name="A1B2" id="B2" autocomplete="off" required disabled>
+                <label id="CB2" class="btn btn-outline-success" for="B2" onclick="octavos('#B2')">B2</label>
+                <input type="hidden" name="B2" id="hb2">
+            </div><br>
+        
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="C1D2" id="C1" autocomplete="off" required disabled>
+                <label id="CC1" class="btn btn-outline-success" for="C1" onclick="octavos('#C1')">C1</label>
+                <input type="hidden" name="C1" id="hc1">
+            
+                <input type="radio" class="btn-check" name="C1D2" id="D2" autocomplete="off" required disabled>
+                <label id="CD2" class="btn btn-outline-success" for="D2" onclick="octavos('#D2')">D2</label>
+                <input type="hidden" name="D2" id="hd2">
+            </div><br>
+        
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="E1F2" id="E1" autocomplete="off" required disabled>
+                <label id="CE1" class="btn btn-outline-success" for="E1" onclick="octavos('#E1')">E1</label>
+                <input type="hidden" name="E1" id="he1">
+            
+                <input type="radio" class="btn-check" name="E1F2" id="F2" autocomplete="off" required disabled>
+                <label id="CF2" class="btn btn-outline-success" for="F2" onclick="octavos('#F2')">F2</label>
+                <input type="hidden" name="F2" id="hf2">
+            </div><br>
+        
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="G1H2" id="G1" autocomplete="off" required disabled>
+                <label id="CG1" class="btn btn-outline-success" for="G1" onclick="octavos('#G1')">G1</label>
+                <input type="hidden" name="G1" id="hg1">
+            
+                <input type="radio" class="btn-check" name="G1H2" id="H2" autocomplete="off" required disabled>
+                <label id="CH2" class="btn btn-outline-success" for="H2" onclick="octavos('#H2')">H2</label>
+                <input type="hidden" name="H2" id="hh2">
+            </div><br>
+        
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="A2B1" id="A2" autocomplete="off" required disabled>
+                <label id="CA2" class="btn btn-outline-success" for="A2" onclick="octavos('#A2')">A2</label>
+                <input type="hidden" name="A2" id="ha2">
+            
+                <input type="radio" class="btn-check" name="A2B1" id="B1" autocomplete="off" required disabled>
+                <label id="CB1" class="btn btn-outline-success" for="B1" onclick="octavos('#B1')">B1</label>
+                <input type="hidden" name="B1" id="hb1">
+            </div><br>
+        
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="C2D1" id="C2" autocomplete="off" required disabled>
+                <label id="CC2" class="btn btn-outline-success" for="C2" onclick="octavos('#C2')">C2</label>
+                <input type="hidden" name="C2" id="hc2">
+            
+                <input type="radio" class="btn-check" name="C2D1" id="D1" autocomplete="off" required disabled>
+                <label id="CD1" class="btn btn-outline-success" for="D1" onclick="octavos('#D1')">D1</label>
+                <input type="hidden" name="D1" id="hd1">
+            </div><br>
+        
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="E2F1" id="E2" autocomplete="off" required disabled>
+                <label id="CE2" class="btn btn-outline-success" for="E2" onclick="octavos('#E2')">E2</label>
+                <input type="hidden" name="E2" id="he2">
+            
+                <input type="radio" class="btn-check" name="E2F1" id="F1" autocomplete="off" required disabled>
+                <label id="CF1" class="btn btn-outline-success" for="F1" onclick="octavos('#F1')">F1</label>
+                <input type="hidden" name="F1" id="hf1">
+            </div><br>
+        
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="G2H1" id="G2" autocomplete="off" required disabled>
+                <label id="CG2" class="btn btn-outline-success" for="G2" onclick="octavos('#G2')">G2</label>
+                <input type="hidden" name="G2" id="hg2">
+            
+                <input type="radio" class="btn-check" name="G2H1" id="H1" autocomplete="off" required disabled>
+                <label id="CH1" class="btn btn-outline-success" for="H1" onclick="octavos('#H1')">H1</label>
+                <input type="hidden" name="H1" id="hh1">
+            </div><br>
+        </div>
+        
+        <div class="cuartos">
+            <h2 class="titulos">Cuartos de final</h2>
+        </div>
+        <div class="cuartos-final">
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="O1O2" id="O1" autocomplete="off" required disabled>
+                <label id="CO1" class="btn btn-outline-success" for="O1" onclick="cuartos('#O1')">O1</label>
+            
+                <input type="radio" class="btn-check" name="O1O2" id="O2" autocomplete="off" required disabled>
+                <label id="CO2" class="btn btn-outline-success" for="O2" onclick="cuartos('#O2')">O2</label>
+            </div><br>
+            
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="O3O4" id="O3" autocomplete="off" required disabled>
+                <label id="CO3" class="btn btn-outline-success" for="O3" onclick="cuartos('#O3')">O3</label>
+            
+                <input type="radio" class="btn-check" name="O3O4" id="O4" autocomplete="off" required disabled>
+                <label id="CO4" class="btn btn-outline-success" for="O4" onclick="cuartos('#O4')">O4</label>
+            </div><br>
+            
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="O5O6" id="O5" autocomplete="off" required disabled>
+                <label id="CO5" class="btn btn-outline-success" for="O5" onclick="cuartos('#O5')">O5</label>
+            
+                <input type="radio" class="btn-check" name="O5O6" id="O6" autocomplete="off" required disabled>
+                <label id="CO6" class="btn btn-outline-success" for="O6" onclick="cuartos('#O6')">O6</label>
+            </div><br>
+            
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="O7O8" id="O7" autocomplete="off" required disabled>
+                <label id="CO7" class="btn btn-outline-success" for="O7" onclick="cuartos('#O7')">O7</label>
+            
+                <input type="radio" class="btn-check" name="O7O8" id="O8" autocomplete="off" required disabled>
+                <label id="CO8" class="btn btn-outline-success" for="O8" onclick="cuartos('#O8')">O8</label>
+            </div><br>
+        </div>
+        
+        <div class="semis">
+            <h2 class="titulos">Semifinales</h2>
+        </div>
+        <div class="semifinales">
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="SEMI1" id="SEMIC1" autocomplete="off" required disabled>
+                <label id="CSEMI1" class="btn btn-outline-success" for="SEMIC1" onclick="semis('#SEMIC1')">SEMI C1</label>
+            
+                <input type="radio" class="btn-check" name="SEMI1" id="SEMIC2" autocomplete="off" required disabled>
+                <label id="CSEMI2" class="btn btn-outline-success" for="SEMIC2" onclick="semis('#SEMIC2')">SEMI C2</label>
+            </div><br>
+            
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="SEMI2" id="SEMIC3" autocomplete="off" required disabled>
+                <label id="CSEMI3" class="btn btn-outline-success" for="SEMIC3" onclick="semis('#SEMIC3')">SEMI C3</label>
+            
+                <input type="radio" class="btn-check" name="SEMI2" id="SEMIC4" autocomplete="off" required disabled>
+                <label id="CSEMI4" class="btn btn-outline-success" for="SEMIC4" onclick="semis('#SEMIC4')">SEMI C4</label>
+            </div><br>
+        </div>
+        
+        <div class="tercer">
+            <h2 class="titulos">Partido tercer lugar</h2>
+        </div>
+        <div class="tercer-puesto">
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="PS1PS2" id="PS1" autocomplete="off" required disabled>
+                <label id="LPS1" class="btn btn-outline-success" for="PS1" onclick="tercer('#PS1')">PS1</label>
+            
+                <input type="radio" class="btn-check" name="PS1PS2" id="PS2" autocomplete="off" required disabled>
+                <label id="LPS2" class="btn btn-outline-success" for="PS2" onclick="tercer('#PS2')">PS2</label>
+
+                <input type="hidden" name="hcuarto" id="cuarto">
+            </div><br>
+        </div>
+        
+        <div class="final">
+            <h2 class="titulos">Final</h2>
+        </div>
+        <div class="partido-final">
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="final" id="final1" autocomplete="off" required disabled>
+                <label id="Lfinal1" class="btn btn-outline-success" for="final1" onclick="final('#final1')">FINAL 1</label>
+            
+                <input type="radio" class="btn-check" name="final" id="final2" autocomplete="off" required disabled>
+                <label id="Lfinal2" class="btn btn-outline-success" for="final2" onclick="final('#final2')">FINAL 2</label>
+
+                <input type="hidden" name="hsegundo" id="segundo">
+            </div><br>
+        </div>
+        
+        <div class="campeon">
+            <h2 class="titulos">Campeón</h2>
+        </div>
+        <div class="tu_campeon">
+            <h5 id="campeon-elegido">Tu Campeón</h5>
+        </div><br>
+
+        <input type="hidden" name="id_usuario" value="{{session['user_id']}}">
+        <!--! Boton de payphone -->
+        <div id="pp-button"></div>
+        <div class="boton-enviar">
+            <a href="#" onclick="pagarpronostico()">Pagar</a>
+            <input id="boton-guardar" class="btn btn-success" type="submit" value="Guardar pronóstico"  disabled >
+        </div>
+    </form>
+    <div class="continer-fluid">
+        <hr class="my-4">
+
+    <footer class="bg-light text-center text-white">
+        <div class="container p-4 pb-0">
+            <!-- Seccion: Social media -->
+            <section class="mb-4">
+            <a
+                class="btn btn-primary btn-floating m-1 rounded-circle"
+                style="background-color: #3b5998;"
+                href="#!"
+                role="button">
+                <i class="fa fa-facebook-f"></i>
+            </a>
+
+            <a
+                class="btn btn-primary btn-floating m-1 rounded-circle"
+                style="background-color: #55acee;"
+                href="#!"
+                role="button">
+                <i class="fa fa-twitter"></i>
+            </a>
+
+            <a
+                class="btn btn-primary btn-floating m-1 rounded-circle"
+                style="background-color: #ac2bac;"
+                href="#!"
+                role="button">
+                <i class="fa fa-instagram"></i>
+            </a>
+
+            <a
+                class="btn btn-primary btn-floating m-1 rounded-circle"
+                style="background-color: rgb(56, 167, 56);"
+                href="#!"
+                role="button"
+                ><i class="fa fa-whatsapp"></i
+                ></a>
+            </section>
+        </div>
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2022 
+            <span class="text-white">www.bettergol.com</span>
+        </div>
+        </footer>
+
+    </div>
+</body>
+</html>
