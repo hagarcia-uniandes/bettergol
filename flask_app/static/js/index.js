@@ -817,9 +817,9 @@ function final(id){
         document.getElementById("segundo").value = final1.value;
         console.log("SEGUNDO",document.getElementById("segundo").value)
     }
-        if(document.getElementById("campeon-elegido")){
-        document.getElementById("boton-guardar").disabled = false;
-    }
+    //     if(document.getElementById("campeon-elegido")){
+    //     document.getElementById("boton-guardar").disabled = false;
+    // }
 
 }
 function tercer(id){

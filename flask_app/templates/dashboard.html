@@ -43,8 +43,11 @@
     <!--! Script forma 1 payphone -->
     <script>
         window.onload = function() {
+        var fecha = new Date();
+        // var identificador_unico = "";
+        var identificador_unico = fecha.getFullYear() + '' + fecha.getMonth() + '' + fecha.getDate() + '' + fecha.getHours() + '' + fecha.getMinutes() + '' + fecha.getSeconds() + '' + fecha.getMilliseconds();
+        console.log("Este es el identificador unico", identificador_unico)
         payphone.Button({
-        
         //token obtenido desde la consola de developer
         token: "kssiQ-XUd4LaIWLqCq77fRYVhYCCenxyzP_7fUD8D9RprdHtMrn8k69909pJ6uRR1aktr929sPVC7ddzuImoL1__CrYAYs-vahipTiwl498KXWvqZiGa6BMhUz4Atd-PD_HV8WdOhGlu53ILrGNPeW2vDV9fBMoTrqvX9r3xzR2JMx_i2ivAWpJEX9oZ6lfFaweHRCIDDq8a5lAC5dKP_1YugwLEeU9vVT1-FNN8Tf3qoH9cUKMY94KUB78ZREawsSYWecWvC0qEk37Xhx7C2yERwp_s-Bj_Vn8uR3XEvxPEO90qyd7Q1YxUEHVKjB4F_SnuDQ",
         
@@ -60,9 +63,8 @@
         amount: 1000,
         amountWithoutTax: 1000,
         currency: "USD",
-        clientTransactionId: "identificador-único"
+        clientTransactionId: identificador_unico
         });
-        
         },
         onComplete: function(model, actions){
         
@@ -75,7 +77,10 @@
         //EN ESTA SECCIÓN SE RECIBE LA RESPUESTA Y SE MUESTRA AL USUARIO
         
         if (value.transactionStatus == "Approved"){
-        alert("Pago " + value.transactionId + " recibido, estado " + value.transactionStatus );
+        alert("Pago " + value.transactionId + " recibido, estado " + value.transactionStatus + '\nTu pago fue aprobado, por favor antes de refrescar la pagina o cerrarla asegurate de guardar tu pronóstico');
+            if(document.getElementById("campeon-elegido")){
+                document.getElementById("boton-guardar").disabled = false;
+            }
         }
         }).catch(function(err){
         console.log(err);
@@ -86,35 +91,6 @@
         
         }
         </script>
-
-        <!--! Script forma 2 payphone -->
-        <script>
-            function pagarpronostico(){
-                var parametros ={
-                    amount: "1000",
-                    amountWithoutTax: "1000",
-                    clientTransactionId: "Prueba001",
-                    responseUrl: "http://localhost:5000/aprobado.html",
-                    cancellationUrl: "http://localhost:5000/aprobado.html"
-                };
-                $.ajax({
-                    data: parametros,
-                    url: 'https://pay.payphonetodoesposible.com/api/button/Prepare',
-                    type: 'POST',
-                    beforeSend: function(xhr){
-                        xhr.setRequestHeader ('Authorization', "Bearer kssiQ-XUd4LaIWLqCq77fRYVhYCCenxyzP_7fUD8D9RprdHtMrn8k69909pJ6uRR1aktr929sPVC7ddzuImoL1__CrYAYs-vahipTiwl498KXWvqZiGa6BMhUz4Atd-PD_HV8WdOhGlu53ILrGNPeW2vDV9fBMoTrqvX9r3xzR2JMx_i2ivAWpJEX9oZ6lfFaweHRCIDDq8a5lAC5dKP_1YugwLEeU9vVT1-FNN8Tf3qoH9cUKMY94KUB78ZREawsSYWecWvC0qEk37Xhx7C2yERwp_s-Bj_Vn8uR3XEvxPEO90qyd7Q1YxUEHVKjB4F_SnuDQ")
-                    },
-                    success: function SolicitarPago(respuesta){
-                        lacation.href = respuesta.payWhithCard;
-                    },
-                    error: function(respuesta){
-                        alert("Error en la llamdada" + respuesta);
-                    }
-                });  
-            }
-        </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 </head>
 <body>
     <div class="grupos">
@@ -443,7 +419,6 @@
         <!--! Boton de payphone -->
         <div id="pp-button"></div>
         <div class="boton-enviar">
-            <a href="#" onclick="pagarpronostico()">Pagar</a>
             <input id="boton-guardar" class="btn btn-success" type="submit" value="Guardar pronóstico"  disabled >
         </div>
     </form>

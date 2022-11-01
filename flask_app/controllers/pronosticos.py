@@ -130,3 +130,9 @@ def predicciones():
         'id_usuario' : session['user_id']
     }
     return render_template("predicciones.html", pronostico_real = pronostico_real, pronostico_usuario = pronostico_usuario, usuario_ingreso = Usuario.get_one(data))
+
+#*Respuesta para payphone
+@app.route('/respuesta')
+def respuesta():
+    print("Si esta entrando a la ruta respuesta")
+    return "Tu pago se proceso con exito"
