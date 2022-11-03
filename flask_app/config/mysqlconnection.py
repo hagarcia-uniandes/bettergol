@@ -1,16 +1,16 @@
 from tokenize import Name
 import pymysql.cursors
-# import boto3
-# ssm_client = boto3.client('ssm')
-# #endpoint
-# miendpoint = ssm_client.get_parameter(Name='endpoint')
-# valor_miendpoint = miendpoint['Parameter']['Value']
-# #user
-# miuser = ssm_client.get_parameter(Name='user')
-# valor_miuser = miuser['Parameter']['Value']
-# #endpoint
-# mipsw = ssm_client.get_parameter(Name='password')
-# valor_miendpoint = mipsw['Parameter']['Value']
+import boto3
+ssm_client = boto3.client('ssm', region_name='myregion')
+#endpoint
+miendpoint = ssm_client.get_parameter(Name='endpoint')
+valor_miendpoint = miendpoint['Parameter']['Value']
+#user
+miuser = ssm_client.get_parameter(Name='user')
+valor_miuser = miuser['Parameter']['Value']
+#password
+mipsw = ssm_client.get_parameter(Name='password')
+valor_mipsw = mipsw['Parameter']['Value']
 
 
 # esta clase nos dará una instancia de una conexión a nuestra base de datos
