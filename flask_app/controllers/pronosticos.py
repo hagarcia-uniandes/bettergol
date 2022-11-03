@@ -5,6 +5,13 @@ from flask_app.models.pronostico import Pronostico
 
 from flask_app.models.usuario import Usuario
 
+#JSON
+import json
+import requests
+#Time
+import time
+
+
 #* Admin
 @app.route("/actualizacion")
 def actualizacion():
@@ -132,7 +139,28 @@ def predicciones():
     return render_template("predicciones.html", pronostico_real = pronostico_real, pronostico_usuario = pronostico_usuario, usuario_ingreso = Usuario.get_one(data))
 
 #*Respuesta para payphone
-@app.route('/respuesta')
+@app.route('/respuesta/')
 def respuesta():
     print("Si esta entrando a la ruta respuesta")
-    return "Tu pago se proceso con exito"
+    url = request.url
+    transaccion = request.args.get("id")
+    client = request.args.get("clientTransactionId")
+    print("URL", url)
+    print("ID DEL CLIENTE", transaccion)
+    print("ID DEL CLIENTE", client)
+
+    # JSON de la llamada
+    data = {
+        "id" : transaccion,
+        "clientTxId" : client,
+    }
+    print('QUE ES LA DATA', data)
+
+    # POST con requests
+    url = "https://pay.payphonetodoesposible.com/api/button/V2/Confirm"
+    headers = {"Authorization" : "bearer kssiQ-XUd4LaIWLqCq77fRYVhYCCenxyzP_7fUD8D9RprdHtMrn8k69909pJ6uRR1aktr929sPVC7ddzuImoL1__CrYAYs-vahipTiwl498KXWvqZiGa6BMhUz4Atd-PD_HV8WdOhGlu53ILrGNPeW2vDV9fBMoTrqvX9r3xzR2JMx_i2ivAWpJEX9oZ6lfFaweHRCIDDq8a5lAC5dKP_1YugwLEeU9vVT1-FNN8Tf3qoH9cUKMY94KUB78ZREawsSYWecWvC0qEk37Xhx7C2yERwp_s-Bj_Vn8uR3XEvxPEO90qyd7Q1YxUEHVKjB4F_SnuDQ", "Content-Type" : "application/json"}
+    result = requests.post(url, headers = headers, json = data)
+    print("Status Code", result.status_code)
+    print("JSON Response ", result.json())
+    time.sleep(300)
+    return redirect("/dashboard")

@@ -1,25 +1,25 @@
 from tokenize import Name
 import pymysql.cursors
-import boto3
-ssm_client = boto3.client('ssm', region_name='myregion')
-#endpoint
-miendpoint = ssm_client.get_parameter(Name='endpoint')
-valor_miendpoint = miendpoint['Parameter']['Value']
-#user
-miuser = ssm_client.get_parameter(Name='user')
-valor_miuser = miuser['Parameter']['Value']
-#endpoint
-mipsw = ssm_client.get_parameter(Name='password')
-valor_mipassword = mipsw['Parameter']['Value']
+# import boto3
+# ssm_client = boto3.client('ssm')
+# #endpoint
+# miendpoint = ssm_client.get_parameter(Name='endpoint')
+# valor_miendpoint = miendpoint['Parameter']['Value']
+# #user
+# miuser = ssm_client.get_parameter(Name='user')
+# valor_miuser = miuser['Parameter']['Value']
+# #endpoint
+# mipsw = ssm_client.get_parameter(Name='password')
+# valor_miendpoint = mipsw['Parameter']['Value']
 
 
 # esta clase nos dará una instancia de una conexión a nuestra base de datos
 class MySQLConnection:
     def __init__(self, db):
         # cambiar el usuario y la contraseña según sea necesario
-        connection = pymysql.connect(host = valor_miendpoint,#Endpoint
-                                    user = valor_miuser, #User
-                                    password = valor_mipassword, #Password
+        connection = pymysql.connect(host = 'localhost',#Endpoint
+                                    user = 'root', #User
+                                    password = 'root', #Password
                                     db = db,#bettergol
                                     charset = 'utf8mb4',
                                     cursorclass = pymysql.cursors.DictCursor,

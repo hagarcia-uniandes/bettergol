@@ -37,9 +37,9 @@
         }
         }
         </style>
-
-    <script src="https://pay.payphonetodoesposible.com/api/button/js?appId=ACATUIDDEAPLICACION"></script>
     
+    <script src="https://pay.payphonetodoesposible.com/api/button/js?appId=ACATUIDDEAPLICACION"></script>
+
     <!--! Script forma 1 payphone -->
     <script>
         window.onload = function() {
@@ -54,6 +54,7 @@
         //PARÁMETROS DE CONFIGURACIÓN
         btnHorizontal: true,
         btnCard: true,
+        context: "iframe",
         
         createOrder: function(actions){
         
@@ -77,6 +78,7 @@
         //EN ESTA SECCIÓN SE RECIBE LA RESPUESTA Y SE MUESTRA AL USUARIO
         
         if (value.transactionStatus == "Approved"){
+        window.location.href = "http://localhost:5000/respuesta/?id=" + model.id + "&clientTransactionId=" +model.clientTxId;
         alert("Pago " + value.transactionId + " recibido, estado " + value.transactionStatus + '\nTu pago fue aprobado, por favor antes de refrescar la pagina o cerrarla asegurate de guardar tu pronóstico');
             if(document.getElementById("campeon-elegido")){
                 document.getElementById("boton-guardar").disabled = false;
@@ -121,6 +123,18 @@
         </h5>
     </div>
     <div class="fase-grupos">
+        {% with messages = get_flashed_messages(category_filter=['pronostico']) %}
+        {% if messages %}
+        <div class="centrar-instrucciones">
+        <div id="pronostico" class="alert alert-success" role="alert">
+                {% for message in messages %}
+                <p>{{message}}</p>
+                {% endfor %}
+        </div>
+        </div>
+        {% endif %}
+        {% endwith %}  
+
         <div class="row grupos_arriba">
             <div class="col-3 menu">
                 <h3 class="gp-centrar">GRUPO A</h3>
@@ -416,8 +430,14 @@
         </div><br>
 
         <input type="hidden" name="id_usuario" value="{{session['user_id']}}">
+        <div class="centrar-instrucciones">
+            <h5 class="instrucciones-fg mb-4 mt-3">Por favor primero llene completamente el pronóstico, después proceda a realizar el pago y por último guarde su pronóstico.
+            </h5>
+        </div>
         <!--! Boton de payphone -->
-        <div id="pp-button"></div>
+        <div class="centrar-instrucciones" id="pp-button"></div>
+
+        <!--! Boton guardar -->
         <div class="boton-enviar">
             <input id="boton-guardar" class="btn btn-success" type="submit" value="Guardar pronóstico"  disabled >
         </div>

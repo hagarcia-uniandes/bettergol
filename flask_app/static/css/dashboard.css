@@ -100,3 +100,15 @@ body, html{
 .reglas-oct{
     text-align: center;
 }
+
+#pronostico{
+    width: 40%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    font-size: 30px;
+
+}

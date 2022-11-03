@@ -91,6 +91,7 @@ def crear_pronostico():
     if 'user_id' not in session or session['perfil'] != 2 or session['recuperar_psw'] != 0:
         return redirect('/logout')
     Pronostico.save(request.form)
+    flash("Pronóstico guardado exitosamente, esperamos que seas el ganador!!! Participa otra vez para que tengas más oportunidades de ganar", "pronostico")
     return redirect("/dashboard")
     
 @app.route('/logout')
