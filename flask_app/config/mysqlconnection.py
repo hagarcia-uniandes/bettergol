@@ -17,9 +17,9 @@ valor_mipsw = mipsw['Parameter']['Value']
 class MySQLConnection:
     def __init__(self, db):
         # cambiar el usuario y la contraseña según sea necesario
-        connection = pymysql.connect(host = 'localhost',#Endpoint
-                                    user = 'root', #User
-                                    password = 'root', #Password
+        connection = pymysql.connect(host = valor_miendpoint,#Endpoint
+                                    user = valor_miuser, #User
+                                    password = valor_mipsw, #Password
                                     db = db,#bettergol
                                     charset = 'utf8mb4',
                                     cursorclass = pymysql.cursors.DictCursor,
