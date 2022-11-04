@@ -135,7 +135,7 @@ def enviar_email():
                 sender='bettergol593@gmail.com',
                 recipients=[request.form['correoomc']])
         msg.body = 'Siga las instrucciones para recuperar su contraseña'
-        msg.html = '<p>Siga las instrucciones para recuperar su contraseña</p> <br> <a href="http://localhost:5000/recuperar_contraseña">Ingrese a este link para recuperar su contraseña</a>'
+        msg.html = '<p>Siga las instrucciones para recuperar su contraseña</p> <br> <a href="https://bettrgol.net/recuperar_contraseña">Ingrese a este link para recuperar su contraseña</a> <br> <p>El link le a a redirigir a una pagina para cambiar su contraseña</p> <br> <p>LLene los dos campos y cambie su contraseña</p>'
         data = {
             'id' : usuario.id_usuario
         }

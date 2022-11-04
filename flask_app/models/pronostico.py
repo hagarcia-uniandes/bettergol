@@ -66,6 +66,12 @@ class Pronostico:
         query = "INSERT INTO pronosticos (usuarios_id_usuario, A1, B2, C1, D2, E1, F2, G1, H2, A2, B1, C2, D1, E2, F1, G2, H1, A1B2, C1D2, E1F2, G1H2, A2B1, C2D1, E2F1, G2H1, O1O2, O3O4, O5O6, O7O8, SEMI1, SEMI2, PS1PS2, final, cuarto, segundo) VALUES(%(id_usuario)s, %(A1)s, %(B2)s, %(C1)s, %(D2)s, %(E1)s, %(F2)s, %(G1)s, %(H2)s, %(A2)s, %(B1)s, %(C2)s, %(D1)s, %(E2)s, %(F1)s, %(G2)s, %(H1)s, %(A1B2)s, %(C1D2)s, %(E1F2)s, %(G1H2)s, %(A2B1)s, %(C2D1)s, %(E2F1)s, %(G2H1)s, %(O1O2)s, %(O3O4)s, %(O5O6)s, %(O7O8)s, %(SEMI1)s, %(SEMI2)s, %(PS1PS2)s, %(final)s, %(hcuarto)s, %(hsegundo)s);"
         return connectToMySQL(cls.db_name).query_db(query,data)
 
+#Metodo para crear un nuevo codigo
+    @classmethod
+    def savecod(cls,data):
+        query = "INSERT INTO codigos (id_codigo, Nombre) VALUES(%(id_codigo)s, %(Nombre)s);"
+        return connectToMySQL(cls.db_name).query_db(query,data)
+
 
     #!Metodo para guardar un vacio
     @classmethod
@@ -111,6 +117,7 @@ class Pronostico:
     def actualizar(cls, data):
         query = "UPDATE pronosticos SET A1=%(a1)s,B2=%(b2)s,C1=%(c1)s,D2=%(d2)s,E1=%(e1)s,F2=%(f2)s,G1=%(g1)s,H2=%(h2)s,A2=%(a2)s,B1=%(b1)s,C2=%(c2)s,D1=%(d1)s,E2=%(e2)s,F1=%(f1)s,G2=%(g2)s,H1=%(h1)s,A1B2=%(a1b2)s,C1D2=%(c1d2)s,E1F2=%(e1f2)s,G1H2=%(g1h2)s,A2B1=%(a2b1)s,C2D1=%(c2d1)s,E2F1=%(e2f1)s,G2H1=%(g2h1)s,O1O2=%(o1o2)s,O3O4=%(o3o4)s,O5O6=%(o5o6)s,O7O8=%(o7o8)s,SEMI1=%(semi1)s,SEMI2=%(semi2)s,PS1PS2=%(ps1ps2)s,final=%(final)s,cuarto=%(cuarto)s,segundo=%(segundo)s,updated_at=NOW() WHERE usuarios_id_usuario = 1;"
         return connectToMySQL(cls.db_name).query_db(query,data)
+
 
 
     # #metodo para seleccionar un usuario mediante el id

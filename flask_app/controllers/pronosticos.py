@@ -2,7 +2,6 @@ from flask import render_template,redirect,request,session,flash
 
 from flask_app import app
 from flask_app.models.pronostico import Pronostico
-
 from flask_app.models.usuario import Usuario
 
 #JSON
@@ -10,6 +9,26 @@ import json
 import requests
 #Time
 import time
+
+
+#* Admin
+@app.route("/codigo")
+def codigo():
+    if 'user_id' not in session or session['perfil'] != 1:
+        return redirect('/logout')
+    return render_template("codigo.html")
+
+#* Admin
+@app.route("/crear_codigo", methods=['POST'])
+def crear_codigo():
+    if 'user_id' not in session or session['perfil'] != 1:
+        return redirect('/logout')
+    data ={ 
+        "id_codigo": request.form['id_codigo'],
+        "Nombre": request.form['Nombre'],
+    }
+    Pronostico.savecod(data)
+    return redirect('/codigo')
 
 
 #* Admin
@@ -128,9 +147,12 @@ def contador():
             }
             Pronostico.update_puntaje(data)
     return redirect("/actualizacion") 
-#* Admin
+
+#* USUARIO
 @app.route('/predicciones')
 def predicciones():
+    if 'user_id' not in session or session['perfil'] != 2 or session['recuperar_psw'] != 0:
+        return redirect('/logout')
     pronostico_real = Pronostico.obtener_resultado_real()
     pronostico_usuario = Pronostico.obtener_resultado_usuario()
     data = {
@@ -141,6 +163,8 @@ def predicciones():
 #*Respuesta para payphone
 @app.route('/respuesta/')
 def respuesta():
+    if 'user_id' not in session or session['perfil'] != 2 or session['recuperar_psw'] != 0:
+        return redirect('/logout')
     print("Si esta entrando a la ruta respuesta")
     url = request.url
     transaccion = request.args.get("id")
@@ -158,7 +182,7 @@ def respuesta():
 
     # POST con requests
     url = "https://pay.payphonetodoesposible.com/api/button/V2/Confirm"
-    headers = {"Authorization" : "bearer kssiQ-XUd4LaIWLqCq77fRYVhYCCenxyzP_7fUD8D9RprdHtMrn8k69909pJ6uRR1aktr929sPVC7ddzuImoL1__CrYAYs-vahipTiwl498KXWvqZiGa6BMhUz4Atd-PD_HV8WdOhGlu53ILrGNPeW2vDV9fBMoTrqvX9r3xzR2JMx_i2ivAWpJEX9oZ6lfFaweHRCIDDq8a5lAC5dKP_1YugwLEeU9vVT1-FNN8Tf3qoH9cUKMY94KUB78ZREawsSYWecWvC0qEk37Xhx7C2yERwp_s-Bj_Vn8uR3XEvxPEO90qyd7Q1YxUEHVKjB4F_SnuDQ", "Content-Type" : "application/json"}
+    headers = {"Authorization" : "bearer fa1hu88qg0A9QHzEZuMWfMs7wj4LDkMM91PxAFkzaehpoQ1ldJNCEsMvzMVXDaDYt_flUFPeY_nYXE-IG0Z0bldEY5ghhnrivaQkStNBsJQLoJrWJZoVUyic8-W7DEbDXy75ilvCVyuUad3WiKQXmGE3QozBiDbLOBxZB7wTPBYLdJ3YtYo2t-mTaOR5vpGAtE0Sy_eFhggT_jlXgcilnxuvTbYPmfKMBYK-ai4-yuneMgnxvjCmBUCYyr2Yf1991ddWcRxNBqRTMDCEa1YXZmpz27gHUZtwIY_iE6qyAZFFxClcrihdOvje27xNZWH2Muiqog", "Content-Type" : "application/json"}
     result = requests.post(url, headers = headers, json = data)
     print("Status Code", result.status_code)
     print("JSON Response ", result.json())

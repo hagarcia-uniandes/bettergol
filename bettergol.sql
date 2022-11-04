@@ -66,7 +66,7 @@ CREATE TABLE `usuarios` (
 );
 
 LOCK TABLES `usuarios` WRITE;
-INSERT INTO `usuarios` VALUES (1,'Admin','Admin','0','0992720315','bettergol593@gmail.com','$2b$12$xEWuW53XuqyMbDWxWFaOO.WnDFF983suwFMKboRX.B8EPlnE7IWby','aceptado',0,'2022-10-26 21:47:32','2022-10-26 21:47:32',1,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `usuarios` VALUES (1,'Admin','Admin','0','0992720315','bettergol593@gmail.com','$2b$12$wANjBptzc0sXpKwGnaBw8O2QVuD06VdnW5CA73RinydSD2FYdzhpe','aceptado',0,'2022-10-26 21:47:32','2022-10-26 21:47:32',1,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `pronosticos`;

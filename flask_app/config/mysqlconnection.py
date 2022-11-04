@@ -1,7 +1,7 @@
 from tokenize import Name
 import pymysql.cursors
 import boto3
-ssm_client = boto3.client('ssm', region_name='myregion')
+ssm_client = boto3.client('ssm')
 #endpoint
 miendpoint = ssm_client.get_parameter(Name='endpoint')
 valor_miendpoint = miendpoint['Parameter']['Value']
@@ -17,9 +17,9 @@ valor_mipsw = mipsw['Parameter']['Value']
 class MySQLConnection:
     def __init__(self, db):
         # cambiar el usuario y la contraseña según sea necesario
-        connection = pymysql.connect(host = valor_miendpoint,#Endpoint
-                                    user = valor_miuser, #User
-                                    password = valor_mipsw, #Password
+        connection = pymysql.connect(host = 'valor_miendpoint',#Endpoint
+                                    user = 'valor_miuser', #User
+                                    password = 'valor_mipsw', #Password
                                     db = db,#bettergol
                                     charset = 'utf8mb4',
                                     cursorclass = pymysql.cursors.DictCursor,
