@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="/static/img/logo.png">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/nav.css') }}">
+    <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <link rel="stylesheet" href="../static/css/dashboard.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <title>Dashboard principal</title>
+</head>
+<body>
+    <div class="grupos">
+        <img src="../static/img/banner.png" width="100%">
+    </div>
+    <nav class="cajaNav">
+        <div class="titNav">
+        <div class="logo h3" ><b>ADMIN</b></div>
+        <div class="toggle fa fa-bars" onclick="alternar('menu')"></div>
+        </div>
+        <ul class="barNav cerrado" id="menu">
+            <a class="nav-link" href="/dashboard_admin" style="margin: 10px;">Inicio</a>
+            <a class="nav-link"  href="/ver_usuarios" style="margin: 30px;">Usuarios</a>
+            <a href="/logout" class="dropdown-item" style="margin: 10px;"><i class="fa fa-power-off"></i> Cerrar Sesión</a>
+        </ul>
+    </nav>
+    <form action="/actualizar" method="post" class="border px-md-5 pb-3 rounded">
+        <div class="grupos">
+            <h2 class="titulos text-white">CLASIFICADOS GRUPOS</h2>
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="a1">A1</label>
+            <input type="text" name="a1" class="form-control form-control" value="{{editar.a1}}" placeholder="{{editar.a1}}"/>
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="a2">A2</label>
+            <input type="text" name="a2" class="form-control form-control" value="{{editar.a2}}" placeholder="{{editar.a2}}" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="b1">B1</label>
+            <input type="text" name="b1" class="form-control form-control" value="{{editar.b1}}" placeholder="{{editar.b1}}" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="b2">B2</label>
+            <input type="text" name="b2" class="form-control form-control" value="{{editar.b2}}" placeholder="{{editar.b2}}" />
+        </div>        
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="c1">C1</label>
+            <input type="text" name="c1" class="form-control form-control" value="{{editar.c1}}" placeholder="{{editar.c1}}" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="c2">C2</label>
+            <input type="text" name="c2" class="form-control form-control" value="{{editar.c2}}" placeholder="{{editar.c2}}" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="d1">D1</label>
+            <input type="text" name="d1" class="form-control form-control" value="{{editar.d1}}" placeholder="{{editar.d1}}" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="d2">D2</label>
+            <input type="text" name="d2" class="form-control form-control" value="{{editar.d2}}" placeholder="{{editar.d2}}" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="e1">E1</label>
+            <input type="text" name="e1" class="form-control form-control" value="{{editar.e1}}" placeholder="{{editar.e1}}" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="e2">E2</label>
+            <input type="text" name="e2" class="form-control form-control" value="{{editar.e2}}" placeholder="{{editar.e2}}" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="f1">F1</label>
+            <input type="text" name="f1" class="form-control form-control" value="{{editar.f1}}" placeholder="{{editar.f1}}" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="f2">F2</label>
+            <input type="text" name="f2" class="form-control form-control" value="{{editar.f2}}" placeholder="{{editar.f2}}" />
+        </div>        
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="g1">G1</label>
+            <input type="text" name="g1" class="form-control form-control" value="{{editar.g1}}" placeholder="{{editar.g1}}" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="g2">G2</label>
+            <input type="text" name="g2" class="form-control form-control" value="{{editar.g2}}" placeholder="{{editar.g2}}" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="h1">H1</label>
+            <input type="text" name="h1" class="form-control form-control" value="{{editar.h1}}" placeholder="{{editar.h1}}" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="h2">H2</label>
+            <input type="text" name="h2" class="form-control form-control" value="{{editar.h2}}" placeholder="{{editar.h2}}" />
+        </div>    
+
+        <div class="grupos">
+            <h2 class="titulos text-white">GANADORES OCTAVOS</h2>
+        </div>
+        <div class="form-outline mb-8">
+            <label class="form-label font-weight-bold text-dark" for="a1b2">A1B2</label>
+            <input type="text" name="a1b2" class="form-control form-control" value="{{editar.a1b2}}" placeholder="{{editar.a1b2}}" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="c1d2">C1D2</label>
+            <input type="text" name="c1d2" class="form-control form-control" value="{{editar.c1d2}}" placeholder="{{editar.c1d2}}" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="e1f2">E1F2</label>
+            <input type="text" name="e1f2" class="form-control form-control" value="{{editar.e1f2}}" placeholder="{{editar.e1f2}}" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="g1h2">G1H2</label>
+            <input type="text" name="g1h2" class="form-control form-control" value="{{editar.g1h2}}" placeholder="{{editar.g1h2}}" />
+        </div>        
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="a2b1">A2B1</label>
+            <input type="text" name="a2b1" class="form-control form-control" value="{{editar.a2b1}}" placeholder="{{editar.a2b1}}" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="c2d1">C2D1</label>
+            <input type="text" name="c2d1" class="form-control form-control" value="{{editar.c2d1}}" placeholder="{{editar.c2d1}}" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="e2f1">E2F1</label>
+            <input type="text" name="e2f1" class="form-control form-control" value="{{editar.e2f1}}" placeholder="{{editar.e2f1}}" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="g2h1">G2H1</label>
+            <input type="text" name="g2h1" class="form-control form-control" value="{{editar.g2h1}}" placeholder="{{editar.g2h1}}" />
+        </div>   
+
+        <div class="grupos">
+            <h2 class="titulos text-white">GANADORES CUARTOS</h2>
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="o1o2">O1O2</label>
+            <input type="text" name="o1o2" class="form-control form-control" value="{{editar.o1o2}}" placeholder="{{editar.o1o2}}" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="o3o4">O3O4</label>
+            <input type="text" name="o3o4" class="form-control form-control" value="{{editar.o3o4}}" placeholder="{{editar.o3o4}}" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="o5o6">O5O6</label>
+            <input type="text" name="o5o6" class="form-control form-control" value="{{editar.o5o6}}" placeholder="{{editar.o5o6}}" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="o7o8">O7O8</label>
+            <input type="text" name="o7o8" class="form-control form-control" value="{{editar.o7o8}}" placeholder="{{editar.o7o8}}" />
+        </div>        
+
+        <div class="grupos">
+            <h2 class="titulos text-white">GANADORES SEMIS</h2>
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="semi1">SEMI1</label>
+            <input type="text" name="semi1" class="form-control form-control"  value="{{editar.sem1}}" placeholder="{{editar.semi1}}" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="semi2">SEMI2</label>
+            <input type="text" name="semi2" class="form-control form-control" value="{{editar.semi2}}" placeholder="{{editar.semi2}}" />
+        </div>    
+
+        <div class="grupos">
+            <h2 class="titulos text-white">CUARTO PUESTO</h2>
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="cuarto">Cuarto</label>
+            <input type="text" name="cuarto" class="form-control form-control"  value="{{editar.cuarto}}" placeholder="{{editar.cuarto}}" />
+        </div>   
+
+        <div class="grupos">
+            <h2 class="titulos text-white">TERCER PUESTO</h2>
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="ps1ps2">Tercero</label>
+            <input type="text" name="ps1ps2" class="form-control form-control" value="{{editar.ps1ps2}}" placeholder="{{editar.ps1ps2}}" />
+        </div> 
+        
+        <div class="grupos">
+            <h2 class="titulos text-white">SEGUNDO PUESTO</h2>
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="segundo">Segundo</label>
+            <input type="text" name="segundo" class="form-control form-control" value="{{editar.segundo}}" placeholder="{{editar.segundo}}" />
+        </div>   
+
+        <div class="grupos">
+            <h2 class="titulos text-white">CAMPEON</h2>
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label font-weight-bold text-dark" for="final">Campeon</label>
+            <input type="text" name="final" class="form-control form-control"  value="{{editar.campeon}}" placeholder="{{editar.final}}" />
+        </div>          
+
+        <div class="boton">
+            <input class="btn mt-3 text-white" style="background-color: green;" type="submit" value="Actualizar">
+        </div><br>
+        <a class="btn btn-secondary" href="guardar_vacio">Guardar vacio</a>
+
+    </form>
+
+            <div class="continer-fluid">
+                <hr class="my-4">
+        
+            <footer class="bg-light text-center text-white">
+                <div class="container p-4 pb-0">
+                    <!-- Seccion: Social media -->
+                    <section class="mb-4">
+                    <a
+                        class="btn btn-primary btn-floating m-1 rounded-circle"
+                        style="background-color: #3b5998;"
+                        href="#!"
+                        role="button">
+                        <i class="fa fa-facebook-f"></i>
+                    </a>
+        
+                    <a
+                        class="btn btn-primary btn-floating m-1 rounded-circle"
+                        style="background-color: #55acee;"
+                        href="#!"
+                        role="button">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+        
+                    <a
+                        class="btn btn-primary btn-floating m-1 rounded-circle"
+                        style="background-color: #ac2bac;"
+                        href="#!"
+                        role="button">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+        
+                    <a
+                        class="btn btn-primary btn-floating m-1 rounded-circle"
+                        style="background-color: rgb(56, 167, 56);"
+                        href="#!"
+                        role="button"
+                        ><i class="fa fa-whatsapp"></i
+                        ></a>
+                    </section>
+                </div>
+        
+                <!-- Copyright -->
+                <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                    © 2022 
+                    <span class="text-white">www.bettergol.net</span>
+                </div>
+                </footer>
+        
+            </div>
+    
+</body>
+</html>

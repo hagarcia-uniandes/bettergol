@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="/static/img/logo.png">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/nav.css') }}">
+    <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <link rel="stylesheet" href="../static/css/dashboard.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <title>Dashboard principal</title>
+</head>
+<body>
+    <div class="grupos">
+        <img src="../static/img/banner.png" width="100%">
+    </div>
+    <nav class="cajaNav">
+        <div class="titNav">
+        <div class="logo h3" ><b>ADMIN</b></div>
+        <div class="toggle fa fa-bars" onclick="alternar('menu')"></div>
+        </div>
+        <ul class="barNav cerrado" id="menu">
+            <a class="nav-link" href="/dashboard_admin" style="margin: 10px;">Inicio</a>
+            <a class="nav-link"  href="/ver_usuarios" style="margin: 30px;">Usuarios</a>
+            <a class="nav-link"  href="/codigo" style="margin: 30px;">Códigos</a>
+            <a class="nav-link"  href="/actualizacion" style="margin: 30px;">Actualizar</a>
+            <a href="/logout" class="dropdown-item" style="margin: 10px;"><i class="fa fa-power-off"></i> Cerrar Sesión</a>
+        </ul>
+    </nav>
+    
+        <form action="/crear_codigo" method="post"  name="codigo">
+                        
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="id_codigo" placeholder="Código" name="id_codigo" required>
+                <label for="id_codigo">Código</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="Nombre" placeholder="Nombre" name="Nombre" required>
+                <label for="Nombre">Nombre</label>
+            </div>
+
+        <div class="boton">
+            <input class="btn mt-3 text-white" style="background-color: green;" type="submit" value="Guardar">
+        </div><br>
+
+
+    </form>
+
+            <div class="continer-fluid">
+                <hr class="my-4">
+        
+            <footer class="bg-light text-center text-white">
+                <div class="container p-4 pb-0">
+                    <!-- Seccion: Social media -->
+                    <section class="mb-4">
+                    <a
+                        class="btn btn-primary btn-floating m-1 rounded-circle"
+                        style="background-color: #3b5998;"
+                        href="#!"
+                        role="button">
+                        <i class="fa fa-facebook-f"></i>
+                    </a>
+        
+                    <a
+                        class="btn btn-primary btn-floating m-1 rounded-circle"
+                        style="background-color: #55acee;"
+                        href="#!"
+                        role="button">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+        
+                    <a
+                        class="btn btn-primary btn-floating m-1 rounded-circle"
+                        style="background-color: #ac2bac;"
+                        href="#!"
+                        role="button">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+        
+                    <a
+                        class="btn btn-primary btn-floating m-1 rounded-circle"
+                        style="background-color: rgb(56, 167, 56);"
+                        href="#!"
+                        role="button"
+                        ><i class="fa fa-whatsapp"></i
+                        ></a>
+                    </section>
+                </div>
+        
+                <!-- Copyright -->
+                <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                    © 2022 
+                    <span class="text-white">www.bettergol.net</span>
+                </div>
+                </footer>
+        
+            </div>
+    
+</body>
+</html>
