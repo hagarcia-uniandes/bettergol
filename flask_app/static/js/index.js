@@ -25,8 +25,6 @@ const pais4 = document.querySelector('.a4');
     if(clasificadosa.includes('HOL')){
         pais4.disabled = true;
     }
-    console.log(clasificadosa);
-    console.log(clasificadosa.length);
     const a1 = clasificadosa[0];
     const a2 = clasificadosa[1];
     console.log(a1,a2)
@@ -639,7 +637,6 @@ function octavos(id){
     if(pais.id == "A1" || pais.id == "B2"){
         document.getElementById("CO1").innerHTML = `${pais.value} <img class="float-end" src="static/img/${pais.value}.svg" width="25">`;
         document.getElementById("O1").value = pais.value;
-        console.log("Valor que tiene O1",document.getElementById("O1").value)
         //if y variable para activar y desactivar los botones
         const o1 = pais.value;
         if(o1){
@@ -649,7 +646,6 @@ function octavos(id){
     if(pais.id == "C1" || pais.id == "D2"){
         document.getElementById("CO2").innerHTML = `<img class="float-start" src="static/img/${pais.value}.svg" width="25"> ${pais.value}`;
         document.getElementById("O2").value = pais.value;
-        console.log("Valor que tiene O2",document.getElementById("O2").value)
         const o2 = pais.value;
         if(o2){
             document.getElementById("O2").disabled = false;
@@ -658,7 +654,6 @@ function octavos(id){
     if(pais.id == "E1" || pais.id == "F2"){
         document.getElementById("CO3").innerHTML = `${pais.value} <img class="float-end" src="static/img/${pais.value}.svg" width="25">`;
         document.getElementById("O3").value = pais.value;
-        console.log("Valor que tiene O3",document.getElementById("O3").value)
         const o3 = pais.value;
         if(o3){
             document.getElementById("O3").disabled = false;
@@ -667,7 +662,6 @@ function octavos(id){
     if(pais.id == "G1" || pais.id == "H2"){
         document.getElementById("CO4").innerHTML = `<img class="float-start" src="static/img/${pais.value}.svg" width="25"> ${pais.value}`;
         document.getElementById("O4").value = pais.value;
-        console.log("Valor que tiene O4",document.getElementById("O4").value)
         const o4 = pais.value;
         if(o4){
             document.getElementById("O4").disabled = false;
@@ -676,7 +670,6 @@ function octavos(id){
     if(pais.id == "A2" || pais.id == "B1"){
         document.getElementById("CO5").innerHTML = `${pais.value} <img class="float-end" src="static/img/${pais.value}.svg" width="25">`;
         document.getElementById("O5").value = pais.value;
-        console.log("Valor que tiene O5",document.getElementById("O5").value)
         const o5 = pais.value;
         if(o5){
             document.getElementById("O5").disabled = false;
@@ -685,7 +678,6 @@ function octavos(id){
     if(pais.id == "C2" || pais.id == "D1"){
         document.getElementById("CO6").innerHTML = `<img class="float-start" src="static/img/${pais.value}.svg" width="25"> ${pais.value}`;
         document.getElementById("O6").value = pais.value;
-        console.log("Valor que tiene O6",document.getElementById("O6").value)
         const o6 = pais.value;
         if(o6){
             document.getElementById("O6").disabled = false;
@@ -694,7 +686,6 @@ function octavos(id){
     if(pais.id == "E2" || pais.id == "F1"){
         document.getElementById("CO7").innerHTML = `${pais.value} <img class="float-end" src="static/img/${pais.value}.svg" width="25">`;
         document.getElementById("O7").value = pais.value;
-        console.log("Valor que tiene O7",document.getElementById("O7").value)
         const o7 = pais.value;
         if(o7){
             document.getElementById("O7").disabled = false;
@@ -703,7 +694,6 @@ function octavos(id){
     if(pais.id == "G2" || pais.id == "H1"){
         document.getElementById("CO8").innerHTML = `<img class="float-start" src="static/img/${pais.value}.svg" width="25"> ${pais.value}`;
         document.getElementById("O8").value = pais.value;
-        console.log("Valor que tiene O8",document.getElementById("O8").value)
         const o8 = pais.value;
         if(o8){
             document.getElementById("O8").disabled = false;
@@ -717,7 +707,6 @@ function cuartos(id){
     if(pais.id == "O1" || pais.id == "O2"){
         document.getElementById("CSEMI1").innerHTML = `${pais.value} <img class="float-end" src="static/img/${pais.value}.svg" width="25">`;
         document.getElementById("SEMIC1").value = pais.value;
-        console.log("Valor que tiene SEMIC1",document.getElementById("SEMIC1").value)
         const semi1 = pais.value;
         if(semi1){
             document.getElementById("SEMIC1").disabled = false;
@@ -726,7 +715,6 @@ function cuartos(id){
     if(pais.id == "O3" || pais.id == "O4"){
         document.getElementById("CSEMI2").innerHTML = `<img class="float-start" src="static/img/${pais.value}.svg" width="25"> ${pais.value}`;
         document.getElementById("SEMIC2").value = pais.value;
-        console.log("Valor que tiene SEMIC2",document.getElementById("SEMIC2").value)
         const semi2 = pais.value;
         if(semi2){
             document.getElementById("SEMIC2").disabled = false;
@@ -735,7 +723,6 @@ function cuartos(id){
     if(pais.id == "O5" || pais.id == "O6"){
         document.getElementById("CSEMI3").innerHTML = `${pais.value} <img class="float-end" src="static/img/${pais.value}.svg" width="25">`;
         document.getElementById("SEMIC3").value = pais.value;
-        console.log("Valor que tiene SEMIC3",document.getElementById("SEMIC3").value)
         const semi3= pais.value;
         if(semi3){
             document.getElementById("SEMIC3").disabled = false;
@@ -744,7 +731,6 @@ function cuartos(id){
     if(pais.id == "O7" || pais.id == "O8"){
         document.getElementById("CSEMI4").innerHTML = `<img class="float-start" src="static/img/${pais.value}.svg" width="25"> ${pais.value}`;
         document.getElementById("SEMIC4").value = pais.value;
-        console.log("Valor que tiene SEMIC4",document.getElementById("SEMIC4").value)
         const semi4 = pais.value;
         if(semi4){
             document.getElementById("SEMIC4").disabled = false;
@@ -757,7 +743,6 @@ function semis(id){
     if(pais.id == "SEMIC1" || pais.id == "SEMIC2"){
         document.getElementById("Lfinal1").innerHTML = `${pais.value} <img class="float-end" src="static/img/${pais.value}.svg" width="25">`;
         document.getElementById("final1").value = pais.value;
-        console.log("Valor que tiene final1",document.getElementById("final1").value)
         const final1 = pais.value;
         if(final1){
             document.getElementById("final1").disabled = false;
@@ -782,7 +767,6 @@ function semis(id){
     if(pais.id == "SEMIC3" || pais.id == "SEMIC4"){
         document.getElementById("Lfinal2").innerHTML = `<img class="float-start" src="static/img/${pais.value}.svg" width="25"> ${pais.value}`;
         document.getElementById("final2").value = pais.value;
-        console.log("Valor que tiene final2",document.getElementById("final2").value)
         const final2 = pais.value;
         if(final2){
             document.getElementById("final2").disabled = false;
@@ -815,22 +799,16 @@ function final(id){
     }
     else{
         document.getElementById("segundo").value = final1.value;
-        console.log("SEGUNDO",document.getElementById("segundo").value)
     }
-    //     if(document.getElementById("campeon-elegido")){
-    //     document.getElementById("boton-guardar").disabled = false;
-    // }
 
 }
 function tercer(id){
     let pais = document.querySelector(id);
     if(pais.value == PS1.value){
         document.getElementById("cuarto").value = PS2.value;
-        console.log("CUARTO",document.getElementById("cuarto").value)
     }
     else{
         document.getElementById("cuarto").value = PS1.value;
-        console.log("CUARTO",document.getElementById("cuarto").value)
     }
 
 }
