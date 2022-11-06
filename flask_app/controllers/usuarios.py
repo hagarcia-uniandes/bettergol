@@ -135,7 +135,7 @@ def enviar_email():
                 sender='bettergol593@gmail.com',
                 recipients=[request.form['correoomc']])
         msg.body = 'Siga las instrucciones para recuperar su contraseña'
-        msg.html = '<p>Siga las instrucciones para recuperar su contraseña</p> <br> <a href="https://bettrgol.net/recuperar_contraseña">Ingrese a este link para recuperar su contraseña</a> <br> <p>El link le a a redirigir a una pagina para cambiar su contraseña</p> <br> <p>LLene los dos campos y cambie su contraseña</p>'
+        msg.html = '<p>Siga las instrucciones para recuperar su contraseña</p> <br> <a href="https://bettergol.net/recuperar_contraseña">Ingrese a este link para recuperar su contraseña</a> <br> <p>El link le a a redirigir a una pagina para cambiar su contraseña</p> <br> <p>LLene los dos campos y cambie su contraseña</p>'
         data = {
             'id' : usuario.id_usuario
         }
@@ -147,9 +147,6 @@ def enviar_email():
         session['user_id'] = usu.id_usuario
         session['recuperar_psw'] = usu.recuperarpsw
         session['perfil'] = usu.perfiles_id_perfil
-        print('SESION USER ID', session['user_id'])
-        print('SESION RECUPERAR PSW', session['recuperar_psw'])
-        print('SESION PERFIL', session['perfil'])
         mail.send(msg)
         flash("Correo enviado, revise su email por favor", "enviocorreo")
         #! poner flash de corre enviado, revise su email y siga las instrucciones

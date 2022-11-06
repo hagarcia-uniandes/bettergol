@@ -140,7 +140,6 @@ def contador():
                 cont += 1                 
             puntaje.append(cont)
             lista.append(y.id_pronostico)
-            print("Este el id pronostico ", y.id_pronostico)
             data = {
                 'puntos' : cont,
                 'id_pronostico' : y.id_pronostico
@@ -165,13 +164,9 @@ def predicciones():
 def respuesta():
     if 'user_id' not in session or session['perfil'] != 2 or session['recuperar_psw'] != 0:
         return redirect('/logout')
-    print("Si esta entrando a la ruta respuesta")
     url = request.url
     transaccion = request.args.get("id")
     client = request.args.get("clientTransactionId")
-    print("URL", url)
-    print("ID DEL CLIENTE", transaccion)
-    print("ID DEL CLIENTE", client)
 
     # JSON de la llamada
     data = {
@@ -184,7 +179,5 @@ def respuesta():
     url = "https://pay.payphonetodoesposible.com/api/button/V2/Confirm"
     headers = {"Authorization" : "bearer fa1hu88qg0A9QHzEZuMWfMs7wj4LDkMM91PxAFkzaehpoQ1ldJNCEsMvzMVXDaDYt_flUFPeY_nYXE-IG0Z0bldEY5ghhnrivaQkStNBsJQLoJrWJZoVUyic8-W7DEbDXy75ilvCVyuUad3WiKQXmGE3QozBiDbLOBxZB7wTPBYLdJ3YtYo2t-mTaOR5vpGAtE0Sy_eFhggT_jlXgcilnxuvTbYPmfKMBYK-ai4-yuneMgnxvjCmBUCYyr2Yf1991ddWcRxNBqRTMDCEa1YXZmpz27gHUZtwIY_iE6qyAZFFxClcrihdOvje27xNZWH2Muiqog", "Content-Type" : "application/json"}
     result = requests.post(url, headers = headers, json = data)
-    print("Status Code", result.status_code)
-    print("JSON Response ", result.json())
     time.sleep(300)
     return redirect("/dashboard")
